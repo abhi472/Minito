@@ -48,7 +48,8 @@ public class AppUtils {
                 public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                     if (i == EditorInfo.IME_ACTION_SEARCH) {
                         if (TextUtils.isEmpty(textView.getText().toString())) {
-                            textView.setError("likh be");
+                            textView.setError("Cannot be empty");
+
                             return false;
                         }
                         callback.onEditorAction();
