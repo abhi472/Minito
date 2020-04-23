@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Minito</string>
+    <string name="enter_search_text">Enter search text</string>
+    <string name="no_searches_history_found_nstart_searching">No search history found\nStart searching!</string>
+    <string name="your_favorite_restaurants">Your favorite restaurants</string>
+    <string name="no_search_result_found">No search result found</string>
+    <string name="searching">"Searching... "</string>
+</resources>

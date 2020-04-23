@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="restaurant"
+            type="com.abhishek.minito.model.RestaurantInner" />
+        <variable
+            name="viewModel"
+            type="com.abhishek.minito.ui.RestaurantListViewModel" />
+        <variable
+            name="visibility"
+            type="Boolean" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="9dp"
+        bind:cardBackgroundColor="@android:color/white"
+        bind:cardCornerRadius="10dp"
+        bind:cardElevation="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingTop="24dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="24dp">
+
+            <ImageView
+                android:id="@+id/fav_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.favVisibility  ? (visibility ? 0 : 8) : 8}"
+                android:src="@drawable/ic_favorite_border_24dp"
+                android:onClick="@{() -> viewModel.checkFavorite(restaurant)}"
+                bind:layout_constraintBottom_toBottomOf="parent"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintTop_toTopOf="parent"
+                android:padding="8dp"/>
+
+            <ImageView
+                android:id="@+id/unfav_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.unFavVisibility  ? 0 : 8}"
+                android:src="@drawable/ic_favorite_fill_24dp"
+                bind:layout_constraintBottom_toBottomOf="parent"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintTop_toTopOf="parent"
+                android:padding="8dp"/>
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                bind:layout_constraintBottom_toBottomOf="parent"
+                bind:layout_constraintEnd_toEndOf="parent"
+                android:visibility="@{viewModel.progressVisibilty  ? 0 : 8}"
+                bind:layout_constraintTop_toTopOf="parent"
+                android:padding="8dp"/>
+
+
+
+            <TextView
+                android:id="@+id/ivItemImg"
+                android:layout_width="66dp"
+                android:layout_height="70dp"
+                android:text="@{restaurant.userRating.aggregateRating}"
+                android:textSize="45sp"
+                android:gravity="center"
+                android:textColor="@android:color/holo_green_dark"
+                bind:layout_constraintBottom_toBottomOf="parent"
+                bind:layout_constraintStart_toStartOf="parent"
+                bind:layout_constraintTop_toTopOf="parent"
+                bind:layout_constraintVertical_bias="0.5" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:letterSpacing="0.04"
+                android:textColor="#343434"
+                android:textSize="16sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@{restaurant.name}"
+                bind:layout_constraintLeft_toRightOf="@id/ivItemImg"
+                bind:layout_constraintRight_toRightOf="parent"
+                bind:layout_constraintTop_toTopOf="parent"
+                tools:text="WildCape UMF 8+ Manuka sdfsg sfgg rgwgg veweHoney 500g" />
+
+
+            <TextView
+                android:id="@+id/tvDiscountedPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="5dp"
+                android:text="@{viewModel.setPriceForTwo(restaurant.averageCostForTwo)}"
+                android:fontFamily="@font/source_sans_pro_semibold"
+                android:letterSpacing="0.02"
+                android:textColor="#2f2f2f"
+                android:textSize="18sp"
+                bind:layout_constraintLeft_toRightOf="@id/ivItemImg"
+                bind:layout_constraintTop_toBottomOf="@+id/name"
+                tools:text="S$68.00" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:fontFamily="@font/source_sans_pro"
+                android:letterSpacing="0.02"
+                android:textColor="@android:color/holo_orange_dark"
+                android:textSize="16sp"
+                android:text="@{restaurant.phoneNumbers}"
+                bind:layout_constraintBottom_toBottomOf="parent"
+                bind:layout_constraintLeft_toRightOf="@id/ivItemImg"
+                bind:layout_constraintTop_toBottomOf="@id/tvDiscountedPrice"
+                bind:layout_constraintVertical_bias="0.0"
+                tools:text="S$7005.00" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
